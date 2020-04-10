@@ -11,6 +11,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:fitnesssful/models/user.dart';
 import 'package:fitnesssful/services/database.dart';
+import 'package:fitnesssful/screens/home/calories.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -56,40 +57,45 @@ class _HomeState extends State<Home> {
                     textColor: Colors.white,
                     color: Colors.pink[400],
                     onPressed: () {
-                      formFilled = snapshot.data['formFilled'];
-                      if (snapshot.hasData) {
-                        if (formFilled == false) {
-                          showDialog(
-                              context: context,
-                              barrierDismissible: true,
-                              builder: (BuildContext context) {
-                                return Dialog(
-                                  child: Questions(),
-                                  elevation: 5.0,
-                                );
-                              });
-                        } else {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      DietPlan()));
-                        }
-                      } else {
-                        showDialog(
-                            context: context,
-                            barrierDismissible: true,
-                            builder: (BuildContext context) {
-                              return Dialog(
-                                child: Questions(),
-                                elevation: 5.0,
-                              );
-                            });
-                      }
+                      // formFilled = snapshot.data['formFilled'];
+                      // if (snapshot.hasData) {
+                      //   if (formFilled == false) {
+                      //     showDialog(
+                      //         context: context,
+                      //         barrierDismissible: true,
+                      //         builder: (BuildContext context) {
+                      //           return Dialog(
+                      //             child: Questions(),
+                      //             elevation: 5.0,
+                      //           );
+                      //         });
+                      //   } else {
+                      //     Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (BuildContext context) =>
+                      //                 DietPlan()));
+                      //   }
+                      // } else {
+                      //   showDialog(
+                      //       context: context,
+                      //       barrierDismissible: true,
+                      //       builder: (BuildContext context) {
+                      //         return Dialog(
+                      //           child: Questions(),
+                      //           elevation: 5.0,
+                      //         );
+                      //       });
+                      // }
+
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext contexet) => Calorie()));
                     },
                     child: Container(
                         child: Text(
-                      'Diet Chart',
+                      'Search Calories in Food Item',
                     )),
                   )),
             ),
@@ -108,7 +114,11 @@ class _HomeState extends State<Home> {
                         child: GestureDetector(
                             onTap: () async {
                               await _auth.googleSignOut();
-                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Wrapper()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Wrapper()));
                             },
                             child: Text(
                               'logout',
@@ -134,13 +144,13 @@ class _HomeState extends State<Home> {
                         color: Colors.blue[300],
                         data: steps ?? '',
                         label: 'Foot Steps',
-                  image: 'lib/assets/calories.jpg',
+                        image: 'lib/assets/calories.jpg',
                         icon: FontAwesomeIcons.shoePrints,
                       ),
                 energy == ''
                     ? CircularProgressIndicator()
                     : CustomCard(
-                  image: 'lib/assets/calories.jpg',
+                        image: 'lib/assets/calories.jpg',
                         color: Colors.orange[300],
                         data: energy ?? '',
                         label: 'Enery Burn',

@@ -25,3 +25,5 @@ double kheight(BuildContext context) {
 double kwidth(BuildContext context) {
   return MediaQuery.of(context).size.width;
 }
+
+TextStyle calorie = TextStyle(fontSize: 18.0 );
